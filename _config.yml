@@ -23,4 +23,4 @@ github_username:  Nicholas-c123
 # Build settings
 markdown: kramdown
 
-theme: jekyll-theme-merlot
+theme: jekyll-theme-slate
