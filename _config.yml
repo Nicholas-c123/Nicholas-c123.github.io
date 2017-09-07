@@ -9,9 +9,6 @@
 title: 张祝浩的Github 博客站点
 email: nicholaszhang08@163.com
 description: > # this means to ignore newlines until "baseurl:"
-  > #Write an awesome description for your new site here. You can edit this
-  > #line in _config.yml. It will appear in your document head meta (for
-  > #Google search results) and in your feed.xml site description.
   This is my github pages blog site.
   这是张祝浩的github pages博客站
   主要用来记录一些coding的知识，感悟

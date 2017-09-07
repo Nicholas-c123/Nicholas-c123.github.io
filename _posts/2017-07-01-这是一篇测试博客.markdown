@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "这是一篇我的测试博客"
+date:   2017-09-07 10:40:12 +0800
+categories: 生活感悟 杂谈
+---
+# 测试博客
+这是我发布在github pages 博客上的第一篇测试博客，之前在CSDN写了一点博客。Github pages和jekyll 提供的简介和美观的博客吸引了我。  
+所以今天开始还是主要把自己的知识记录在github博客上吧。
