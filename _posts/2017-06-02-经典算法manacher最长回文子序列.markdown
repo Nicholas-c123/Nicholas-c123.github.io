@@ -1,0 +1,78 @@
+---
+layout: post
+title:  "经典算法manacher解决最长回文序列问题"
+date:   2017-06-02 15:26:12 +0800
+categories: 经典算法
+tag: 
+- 算法
+---
+## manacher算法的理解
+有这么一个经典的问题，就是求一个字符串中的最长回文子序列的长度。有常规的O(n^2)的思想，就是我们每次都尝试以字符串中的某个位置为中心，向两边expand，直到碰到边界或者不匹配，那么就记录这个值。伪代码如下
+```java
+int maxOdd;
+int maxEven
+String s;
+for (int i = 0; i < s.length(); i++){
+    //assume odd length
+    int j = i + 1, k = i -1;
+    while (inBounds(j,k, s.length()) && s[j] == s[k])
+    j++; k--;
+    maxOdd = Math.max(j, k);
+    //assume even length
+        ...
+    
+}
+int ans = max(maxOdd, maxEven);
+```
+算法复杂度是O(n^2)，其实manacher就主要是在计算每个位置的最大expand size的地方做了优化我感觉manacher和KMP算法类似，都是利用了子问题的结果，也就是都包含着dp的思想。  
+下面简要解释一下manacher算法。  
+首先，为了优雅地解决问题，忽略奇偶的影响，我们在每个字符串中插入一个特殊字符。例如'#'吧。
+那么就形成了如下的形状  
+![pic](http://articles.leetcode.com/wp-content/uploads/2011/11/palindrome_table5.png)  
+这里下面的P代表每个位置开始最大可以expand的长度数组。  
+最关键的就是对称性的使用使得我们可以利用子问题。 
+现在假定我们有了一个遍历过程中的中心 c(初始值为0)，边界长度p[c]，和目前得到的回文串的右边界r,那么如果i落在r的左边，我们就可以利用对称的特性得知**p[i] = min(r-i, p[i'])**重点解释一下，如果i + p[i'] < r，那么显然p[i]只能是p[i']，如果i + p[i'] >= r，由于右边界超出了已知的最大对称边界，我们只能得出p[i]>=r -i, 然后就和i > r的情况相同，我们需要在右边界的基础上继续向两边扩展。如果扩展成功得到新的边界r。那么循环结束后，重新遍历一次p，找到最大的p[i]就是我们要的结果
+回顾一下，这里我们通过对称性，保证了r这个右边界每次比较成功就单调向右扩展而不回退，就可以保证O(n)的复杂度。附leetcode链接和Java AC code  
+[leetcode](https://leetcode.com/problems/longest-palindromic-substring/description/)  
+```java
+class Solution {
+    public String longestPalindrome(String s) {
+        //manacher algo 
+        String lr = processString(s);
+        int c = 0;
+        int r = 0;
+        int[] p = new int[lr.length()];
+        for (int i = 0; i < lr.length(); i++){
+            p[i] = r > i ? Math.min(r - i, p[2 * c -i]) : 0;
+            while (inBounds(i+p[i] + 1, i - p[i] -1, lr.length()) && lr.charAt(i + p[i] + 1) == lr.charAt(i - p[i] -1)) 
+                p[i]++;
+            //update center to i if (p[i] > r - c)
+            if(p[i] + i > r){
+                c = i;
+                r = p[i] + i;
+            }
+        }
+        int max = 0;
+        int maxIndex = 0;
+        for (int i = 0; i < lr.length();i++){
+            if (p[i] > max){
+                max = p[i];
+                maxIndex = i;
+            }
+        }
+        return s.substring((maxIndex - max)/2, (maxIndex + max)/2 );
+    }
+    private String processString(String s){
+        StringBuilder res = new StringBuilder();
+        res.append('#');
+        for (int i = 0; i < s.length(); i++){
+            res.append(s.charAt(i));
+            res.append('#');
+        }
+        return res.toString();
+    }
+    private boolean inBounds(int right, int left, int length){
+        return right < length && left >= 0;
+    }
+}
+```
