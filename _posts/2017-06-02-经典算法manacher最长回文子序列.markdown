@@ -3,10 +3,13 @@ layout: post
 title:  "经典算法manacher解决最长回文序列问题"
 date:   2017-06-02 15:26:12 +0800
 categories: 经典算法
+headings:
+  - manacher问题概述
+  - 代码
 tag: 
 - 算法
 ---
-## manacher算法的理解
+## manacher问题概述
 有这么一个经典的问题，就是求一个字符串中的最长回文子序列的长度。有常规的O(n^2)的思想，就是我们每次都尝试以字符串中的某个位置为中心，向两边expand，直到碰到边界或者不匹配，那么就记录这个值。伪代码如下
 ```java
 int maxOdd;
@@ -33,7 +36,8 @@ int ans = max(maxOdd, maxEven);
 最关键的就是对称性的使用使得我们可以利用子问题。 
 现在假定我们有了一个遍历过程中的中心 c(初始值为0)，边界长度p[c]，和目前得到的回文串的右边界r,那么如果i落在r的左边，我们就可以利用对称的特性得知**p[i] = min(r-i, p[i'])**重点解释一下，如果i + p[i'] < r，那么显然p[i]只能是p[i']，如果i + p[i'] >= r，由于右边界超出了已知的最大对称边界，我们只能得出p[i]>=r -i, 然后就和i > r的情况相同，我们需要在右边界的基础上继续向两边扩展。如果扩展成功得到新的边界r。那么循环结束后，重新遍历一次p，找到最大的p[i]就是我们要的结果
 回顾一下，这里我们通过对称性，保证了r这个右边界每次比较成功就单调向右扩展而不回退，就可以保证O(n)的复杂度。附leetcode链接和Java AC code  
-[leetcode](https://leetcode.com/problems/longest-palindromic-substring/description/)  
+[leetcode](https://leetcode.com/problems/longest-palindromic-substring/description/) 
+## 代码 
 ```java
 class Solution {
     public String longestPalindrome(String s) {

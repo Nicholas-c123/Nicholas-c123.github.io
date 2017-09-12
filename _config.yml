@@ -9,7 +9,7 @@
 title: 张祝浩的个人博客
 brief-intro: Nicholas's personal blog
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://blog.nicholas.xin" # the base hostname & protocol for your site
+url: "http://blog.nicholas-c.top" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
 
@@ -57,4 +57,4 @@ excerpt_separator: "\n\n\n\n"
 
 # paginate
 gems: [jekyll-paginate]
-paginate: 6
+paginate: 5
