@@ -83,7 +83,7 @@ layout: default
                     <li><a href="#similar_posts">Similar Posts</a></li>
                     {% endif %}
                     {% for heading in page.headings %}
-                    <li><a href="#{{ heading }}">{{ heading }}</a></li>
+                    <li><a href="#{{ heading | downcase | replace: " ", "-" }}">{{ heading }}</a></li>
                     {% endfor %}
                     <li><a href="#comments">Comments</a></li>
                 </ul>
