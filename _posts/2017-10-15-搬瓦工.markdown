@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "搬瓦工的注册使用"
+excerpt: 
+date:   2017-10-15 12:30:12 +0800
+categories: 生活杂谈
+author: Nicholas Zhang
+tag: 
+  - 推广
+---
+# 好用便宜的VPS-搬瓦工
+这篇文章软广一下我用到的一个好用便宜的VPS——搬瓦工，其洛杉矶CN2方案年付仅需29.99美元，点击防屏蔽链接 [www.bwh1.net](https://bwh1.net/aff.php?aff=21342) 进行注册之后，选择SPECIAL 10G KVM PROMO V3 - LOS ANGELES - CN2 方案右边的order now 或者点击直达链接[29.99年付方案](https://bwh1.net/aff.php?aff=21342&pid=56)，最后在Checkout的时候可以百度一下搬瓦工优惠码，在promotional Code处填入，可以永久获得高达6%的折扣。  
+![checkout](http://banwagong.cn/images/jiaocheng-2.jpg)
+
